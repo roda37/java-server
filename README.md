@@ -6,7 +6,9 @@ Learning ElHava
 ```
 CREATE USER 'user'@'localhost' IDENTIFIED BY 'elpassword';
 GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY 'elpassword' WITH GRANT OPTION;
+
 CREATE DATABASE TESTING;
+
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
