@@ -3,7 +3,7 @@ Learning ElHava
 
 
 # setup mariadb on archlinux
-'''
+'''sql
 CREATE USER 'user'@'localhost' IDENTIFIED BY 'elpassword';
 GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY 'elpassword' WITH GRANT OPTION;
 CREATE DATABASE TESTING;
