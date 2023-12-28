@@ -1,0 +1,2 @@
+Main-Class: Webserver
+Class-Path: ./lib/mariadb-java-client-3.3.2.jar
