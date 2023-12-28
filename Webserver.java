@@ -9,7 +9,7 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
-import java.sql.Connection;						// maria
+import java.sql.Connection;						// mariadb
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -22,9 +22,9 @@ public class Webserver {
 	// mariadb config
 	static String IP = "127.0.0.1";
 	static int maria_port = 3306;
-	static String mariadatabase = "LEARNJAVA";
-	static String maria_username = "master";
-	static String maria_password = "gmb";
+	static String mariadatabase = "example_database";
+	static String maria_username = "maria_user";
+	static String maria_password = "password";
 
 	public String html(String datafile) {		// html reader
 		StringBuilder htmlcontent = new StringBuilder();
@@ -37,7 +37,7 @@ public class Webserver {
 		return htmlcontent.toString();
 	}
 
-	// http server handler NOTE: constructor cannot include args (parentheses)
+	// http server handler
 	public class LeHandler implements HttpHandler {
 		private String html;
 
@@ -74,8 +74,6 @@ public class Webserver {
 		public int makeNewMariadb(String the_new_username, String the_new_password) {
 			String url = "jdbc:mariadb://" + IP + ":" + maria_port + "/" + mariadatabase;
 			try (Connection connection = DriverManager.getConnection(url, maria_username, maria_password)) {
-				//String sql = "INSERT INTO USERS (username, password) VALUES (?, ?)";
-
 				// check if user exists
 				String sql_if_exist = "SELECT 1 FROM USERS WHERE username = ?";
 				try (PreparedStatement preparedStatement = connection.prepareStatement(sql_if_exist)) {
@@ -101,7 +99,7 @@ public class Webserver {
 							System.out.println("database nuked, fix database");
 						}
 
-						return 0; // user crafted
+						return 0; // user added
 
 					} else {
 						System.out.println("user exist");
@@ -125,15 +123,13 @@ public class Webserver {
             String getip = remoteAddress.getAddress().getHostAddress();
 			System.out.println("special agent from " + getip + " universe has arrived");
 
-			// read request body, C is better
+			// read request body
 			BufferedReader br = new BufferedReader(new InputStreamReader(t.getRequestBody(), "utf-8"));
 			String requestBody = br.lines().collect(java.util.stream.Collectors.joining());
 
 			// in case of register, catch POST request :REGISTER
 			if (thepath.equals("/register")) {
 				if ("POST".equalsIgnoreCase(t.getRequestMethod())) {
-					// got new account creds, populate mariadb if != null || != exist
-
 					// extract user, passwd
 					String[] itemz = requestBody.split("&");
 					if (itemz.length == 2) {
@@ -189,8 +185,6 @@ public class Webserver {
 
 	// Exception for http server
 	public static void main(String[] args) throws IOException {
-		// print the path for modules
-		System.out.println(System.getProperty("java.class.path"));
 
 		// open a handle to manage methods
 		Webserver classhandle = new Webserver();

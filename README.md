@@ -1,11 +1,9 @@
 # java-server
-Learning ElHava
 
-
-# setup mariadb on archlinux
+# setup mariadb on archlinux (example)
 ```
-CREATE USER 'user'@'localhost' IDENTIFIED BY 'elpassword';
-GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY 'elpassword' WITH GRANT OPTION;
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'passwd';
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY 'passwd' WITH GRANT OPTION;
 
 CREATE DATABASE TESTING;
 
@@ -16,7 +14,7 @@ CREATE TABLE users (
 );
 ```
 
-
 # edit port and database ip address in Webserver.java
 # run
+
 ./compile
