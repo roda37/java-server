@@ -214,3 +214,5 @@ public class Webserver {
 // add permission based auth
 // in database fix autoincrement id value, doesn't reset after user deletion, maybe good for future but ugly
 // rewrite path to relevant string, fix html
+// fix html/ css
+//		- print if user created, failed
