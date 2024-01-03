@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="{{ url_for('static', filename='RS.png') }}" type="image/x-icon">
+        <title>РГУРС - ИГПРС</title>
+    </head>
+    <style>
+        @keyframes flowGradient {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+        @keyframes moveBackground {
+            0% {
+                background-position: 0 0;
+            }
+            20% {
+                background-position: 30% 20%;
+            }
+            40% {
+                background-position: 60% 40%;
+            }
+            60% {
+                background-position: 90% 60%;
+            }
+            80% {
+                background-position: 60% 40%;
+            }
+            90% {
+                background-position: 30% 20%;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+        body {
+            background-image: url("{{ url_for('static', filename='map.png') }}");
+            animation: moveBackground 10s linear infinite;
+            {% if page!='login' %}
+                backdrop-filter: blur(8px); 
+            {% endif %}
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        #login_body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex: auto;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+        }
+        footer {
+            background: linear-gradient(to right, #198a5b, #0f8e0d, #0eb524, #198a5b);
+            background-size: 200% 100%;
+            animation: flowGradient 10s linear infinite;
+            color: #000000;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .logo {
+            height: 70px;
+            width: 130px;
+        }
+        .login-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 350px;
+        }
+        .login-form {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group-center {
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 94%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-button {
+            background-color: #2b5979;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-button:hover {
+            background-color: #555;
+        }
+    </style>
+    <body>
+        <div class="moving-background"></div>
+        <div id="login_body">
+            <div class="login-container">
+                <img class="logo" src="{{ url_for('static', filename='igprs.png') }}"><br><br><br>
+                <strong style="color:rgb(49, 49, 101)">Регистар Геопросторних Података Републике Српске</strong><br><br><br><br>
+                <form class="login-form" method="POST">
+                    <div class="form-group">
+                        <label for="username">Корисничко име</label>
+                        <input type="text" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Шифра</label>
+                        <input type="password" id="password" name="password">
+                    </div><br>
+                    <span style="display: inline">
+                        <button type="submit" name="action" value="guest" class="login-button" style="width:35%">Пријава као гост</button>
+                        <button type="submit" name="action" value="login" class="login-button" style="width:25%">Пријава</button>
+                        <button type="submit" name="action" value="register" class="login-button" style="width:35%">Регистрација</button>
+                    </span>
+                    {% if status != null %}
+                        <br><br><p> {{ status }} </p>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        <footer>
+            <p>Републичка Управа за Геодетске и Имовинско - Правне Послове</p>
+        </footer>
+    </body>
+</html>

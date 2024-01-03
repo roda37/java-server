@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <form action="/login" method="POST">
+        <label for="signalInputUser">Username:</label>
+        <input type="text" id="signalInputUser" name="username" placeholder="username" required>
+
+        <label for="signalInputPasswd">Password:</label>
+        <input type="password" id="signalInputPasswd" name="password" placeholder="password" required>
+
+        <input type="submit" value="Login">
+    </form>
+
+    <form action="/register" method="POST">
+        <input type="submit" value="register">
+    </form>
+</body>
+</html>

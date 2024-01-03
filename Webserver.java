@@ -22,9 +22,9 @@ public class Webserver {
 	// mariadb config
 	static String IP = "127.0.0.1";
 	static int maria_port = 3306;
-	static String mariadatabase = "example_database";
-	static String maria_username = "maria_user";
-	static String maria_password = "password";
+	static String mariadatabase = "TESTING";
+	static String maria_username = "roda";
+	static String maria_password = "gmb";
 
 	public String html(String datafile) {		// html reader
 		StringBuilder htmlcontent = new StringBuilder();
